@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 19:33:17 by louise            #+#    #+#             */
-/*   Updated: 2020/11/17 11:06:41 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 14:39:55 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int				ft_printf(const char *fmt, ...)
  __attribute__((format(printf,1,2)));
 int				is_charset(char c);
 char			*create_str(char c, int len);
+int				is_format(char c);
 
 int				print_char(char c);
 int				print_conv(const char **str, va_list ap,
@@ -60,8 +61,7 @@ int				print_and_count(char *str, t_format *comb);
 
 t_format		*parse_comb(const char *fmt, va_list ap, long long int nb_char);
 char			*create_parse_str(const char *fmt);
-t_format		*init_comb(char *parse_str, int parse_len,
-		long long int nb_char);
+t_format		*init_comb(int parse_len, long long int nb_char);
 
 void			set_width(t_format *comb, char *parse_str, va_list ap);
 void			set_precision(t_format *comb, char *parse_str, va_list ap);
@@ -80,6 +80,7 @@ int				count_bytes(unsigned int codepoint);
 char			*setstr_unicode(int *str);
 int				count_char_unicode(int *str);
 char			*conv_mod(va_list ap, t_format *comb);
+char			*conv_null(va_list ap, t_format *comb);
 char			*conv_n(va_list ap, t_format *comb);
 short int		*conv_n_si(va_list ap, t_format *comb);
 long long int	*conv_n_lli(va_list ap, t_format *comb);

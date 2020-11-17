@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 02:03:25 by louise            #+#    #+#             */
-/*   Updated: 2020/10/11 21:58:50 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 14:26:46 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			print_and_count(char *str, t_format *comb)
 	int ret;
 	int null_char;
 
-	null_char = comb->spec_char == 'c' && comb->data[0] == '\0';
+	null_char = (comb->spec_char == 'c' && comb->data[0] == '\0');
 	ret = ft_strlen(str);
 	ret = null_char ? ret + 1 : ret;
 	if (null_char && comb->minus_flag)

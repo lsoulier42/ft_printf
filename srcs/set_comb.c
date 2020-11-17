@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 02:06:15 by louise            #+#    #+#             */
-/*   Updated: 2020/11/17 11:15:58 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 14:08:19 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void		set_width(t_format *comb, char *parse_str, va_list ap)
 		if (comb->minus_flag)
 			comb->zero_flag = 0;
 	}
+	if (!comb->spec_char && comb->width > 0)
+		comb->width--;
 }
 
 void		set_precision(t_format *comb, char *parse_str, va_list ap)
@@ -99,18 +101,23 @@ void		set_data(t_format *comb, va_list ap)
 	char	*(*data_fct[10])(va_list, t_format*);
 
 	i = -1;
-	charset = SPEC_CHARSET;
-	data_fct[0] = &conv_char;
-	data_fct[1] = &conv_str;
-	data_fct[2] = &conv_ptr;
-	data_fct[3] = &conv_d;
-	data_fct[4] = &conv_d;
-	data_fct[5] = &conv_u;
-	data_fct[6] = &conv_u;
-	data_fct[7] = &conv_u;
-	data_fct[8] = &conv_mod;
-	data_fct[9] = &conv_n;
-	while (charset[++i])
-		if (charset[i] == comb->spec_char)
-			comb->data = data_fct[i](ap, comb);
+	if (!comb->spec_char)
+		comb->data = conv_null(ap, comb);
+	else
+	{
+		charset = SPEC_CHARSET;
+		data_fct[0] = &conv_char;
+		data_fct[1] = &conv_str;
+		data_fct[2] = &conv_ptr;
+		data_fct[3] = &conv_d;
+		data_fct[4] = &conv_d;
+		data_fct[5] = &conv_u;
+		data_fct[6] = &conv_u;
+		data_fct[7] = &conv_u;
+		data_fct[8] = &conv_mod;
+		data_fct[9] = &conv_n;
+		while (charset[++i])
+			if (charset[i] == comb->spec_char)
+				comb->data = data_fct[i](ap, comb);
+	}
 }

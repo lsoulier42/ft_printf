@@ -11,7 +11,7 @@ SRC_FILES=	ft_printf.c \
 			conv_fct_str.c \
 			conv_fct_ptr.c \
 			conv_fct_n.c \
-			conv_fct_mod.c \
+			conv_fct_other.c \
 			process_fct.c \
 			pf_itoa_base.c \
 			setchar_unicode.c
