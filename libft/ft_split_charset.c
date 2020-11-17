@@ -6,13 +6,13 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 15:04:18 by louise            #+#    #+#             */
-/*   Updated: 2020/09/28 15:06:13 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 10:26:10 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_charset(char c, char *charset)
+static int	is_charset_split(char c, char *charset)
 {
 	int i;
 
@@ -37,8 +37,8 @@ static int	ft_nb_words(char *str, char *charset)
 	i = 0;
 	while (str[i])
 	{
-		if ((p_char == -1 || is_charset(p_char, charset))
-				&& !is_charset(str[i], charset))
+		if ((p_char == -1 || is_charset_split(p_char, charset))
+				&& !is_charset_split(str[i], charset))
 			nb_words++;
 		p_char = str[i];
 		i++;
@@ -51,7 +51,7 @@ static int	ft_word_len(char *str, char *charset)
 	int i;
 
 	i = 0;
-	while (str[i] && !is_charset(str[i], charset))
+	while (str[i] && !is_charset_split(str[i], charset))
 		i++;
 	return (i);
 }
@@ -63,7 +63,7 @@ static char	*set_new_word(char *str, char *charset, int word_len)
 
 	i = 0;
 	word = malloc((word_len + 1) * sizeof(char));
-	while (str[i] && !is_charset(str[i], charset))
+	while (str[i] && !is_charset_split(str[i], charset))
 	{
 		word[i] = str[i];
 		i++;
@@ -86,8 +86,8 @@ char		**ft_split_charset(char *str, char *charset)
 	words_tab = malloc((nb_words + 1) * sizeof(char*));
 	while (*str)
 	{
-		if ((p_char == -1 || is_charset(p_char, charset))
-				&& !is_charset(*str, charset))
+		if ((p_char == -1 || is_charset_split(p_char, charset))
+				&& !is_charset_split(*str, charset))
 		{
 			word_len = ft_word_len(str, charset);
 			words_tab[word_nb] = set_new_word(str, charset, word_len);

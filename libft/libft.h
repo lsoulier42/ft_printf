@@ -21,13 +21,6 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-typedef struct	s_btree
-{
-	struct s_btree	*left;
-	struct s_btree	*right;
-	void			*item;
-}				t_btree;
-
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
@@ -121,16 +114,4 @@ void			ft_lstrm_if(t_list **begin, void *content_ref,
 void			ft_list_sort(t_list **begin, int (*cmp)());
 t_list			*ft_lstat(t_list *begin, unsigned int nbr);
 t_list			*ft_lstadd_strs(int size, char **strs);
-
-t_btree			*btree_create_node(void *item);
-void			btree_apply_prefix(t_btree *root, void (*applyf)(void *));
-void			btree_apply_infix(t_btree *root, void (*applyf)(void *));
-void			btree_apply_suffix(t_btree *root, void (*applyf)(void *));
-void			*btree_search_item(t_btree *root, void *data_ref,
-		int (*cmpf)(void *, void *));
-int				btree_level_count(t_btree *root);
-void			btree_insert_data(t_btree **root, void *item,
-		int (*cmpf)(void *, void *));
-void			btree_apply_by_level(t_btree *root, void (*applyf)(void *item,
-			int current_level, int is_first));
 #endif

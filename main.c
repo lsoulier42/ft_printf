@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 19:23:29 by louise            #+#    #+#             */
-/*   Updated: 2020/10/13 15:59:19 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 13:15:21 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -619,20 +619,34 @@ void 	test_flags(void)
 	ret_rl = printf(fmt, 18);
 	ret_ft = ft_printf(fmt, 18);
 	print_check(ret_rl, ret_ft);
-
+	print_yellow("Chaine avec (zero)etoile(point)etoile(modulo-d), int 4, int -4, int 8\n");
+	fmt = "|%0*.*d|\n";
+	ret_rl = printf(fmt, 4, -4, 18);
+	ret_ft = ft_printf(fmt, 4, -4, 18);
+	print_check(ret_rl, ret_ft);
+	print_yellow("Chaine avec (zero)etoile(point)etoile(modulo-d), int -2, int -4, int 8\n");
+	fmt = "|%0*.*d|\n";
+	ret_rl = printf(fmt, -2, -2, 8);
+	ret_ft = ft_printf(fmt, -2, -2, 8);
+	print_check(ret_rl, ret_ft);
+	print_yellow("Chaine avec modulo(null)\n");
+	fmt = "|%10w|\n";
+	ret_rl = printf(fmt, NULL);
+	ret_ft = ft_printf(fmt, NULL);
+	print_check(ret_rl, ret_ft);
 }
 
 int main()
 {
-	//test_first_tests();
+	test_first_tests();
 	test_chars();
-	//test_strs();
-	//test_ptrs();
-	//test_ints();
-	//test_uints();
-	//test_hexints();
-	//test_nspec();
-	//test_flags();
+	test_strs();
+	test_ptrs();
+	test_ints();
+	test_uints();
+	test_hexints();
+	test_nspec();
+	test_flags();
 	
 	return (0);
 }

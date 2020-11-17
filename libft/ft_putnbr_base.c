@@ -31,8 +31,12 @@ void			ft_putnbr_base(long nbr, char *base)
 	if (ft_check_base(base))
 	{
 		if (nbr < 0)
+		{
 			write(1, "-", 1);
-		nb = nbr < 0 ? -(unsigned long)nbr : nbr;
+			nb = -(unsigned long)nbr;
+		}
+		else
+			nb = nbr;
 		putnbr_rec(nb, base, base_len);
 	}
 }

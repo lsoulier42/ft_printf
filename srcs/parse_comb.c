@@ -48,6 +48,7 @@ t_format	*init_comb(char *parse_str, int parse_len,
 	comb->width = 0;
 	comb->precision = 0;
 	comb->minus_flag = 0;
+	comb->zero_is_present = 0;
 	comb->zero_flag = 0;
 	comb->point_flag = 0;
 	comb->padding_flag = 0;

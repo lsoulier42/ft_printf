@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 02:16:06 by louise            #+#    #+#             */
-/*   Updated: 2020/10/10 14:32:42 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 00:05:12 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ char		*conv_ptr(va_list ap, t_format *comb)
 
 	(void)comb;
 	ptr = (void*)va_arg(ap, void*);
-	data = ft_itoa_base((long)ptr, BASE_HEX_LOW);
+	data = pf_itoa_base((long)ptr, BASE_HEX_LOW);
 	return (data);
 }

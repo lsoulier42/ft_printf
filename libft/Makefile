@@ -31,71 +31,56 @@ SRC_FILES=	ft_memset.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
 			ft_strlcat.c \
-			ft_atoi.c
-OBJS=		${SRC_FILES:.c=.o}
-SRC_BONUS=	${SRC_FILES} \
+			ft_atoi.c \
 			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
-			btree_apply_by_level.c \
-			ft_is_prime.c \
-			ft_putnbr_base.c \
-			btree_apply_infix.c \
-			ft_islowcase.c \
-			ft_putstr.c \
-			btree_apply_prefix.c \
-			ft_isspace.c \
-			ft_range.c \
-			btree_apply_suffix.c \
-			ft_isupcase.c \
-			ft_rev_int_tab.c \
-			btree_create_node.c \
-			ft_joinstrs.c \
-			ft_sort_int_tab.c \
-			btree_insert_data.c \
-			ft_lstadd_strs.c \
-			ft_split_charset.c \
-			btree_level_count.c \
-			ft_lstat.c \
-			ft_sqrt.c \
-			btree_search_item.c \
-			ft_lstfind.c \
-			ft_strcapitalize.c \
-			ft_abs.c \
-			ft_lstmerge.c \
-			ft_strcat.c \
-			ft_atoi_base.c \
-			ft_lstrev.c \
-			ft_strcpy.c \
-			ft_lstrm_if.c \
-			ft_strncat.c \
-			ft_check_base.c \
-			ft_lstsort.c \
-			ft_strncpy.c \
-			ft_convert_base.c \
-			ft_power.c \
-			ft_strrev.c \
-			ft_factorial.c \
-			ft_print_int_tab.c \
-			ft_strstr.c \
-			ft_fibonacci.c \
-			ft_putchar.c \
-			ft_swap_int.c \
-			ft_find_next_prime.c \
-			ft_putnbr.c \
-			ft_swap_ptr.c \
-			ft_itoa_base.c \
-			ft_putfloat.c \
-			ft_ftoa.c \
-			ft_addprefix.c \
-			ft_addsuffix.c
-OBJS_BONUS= ${SRC_BONUS:.c=.o}
+            ft_lstadd_front.c \
+            ft_lstsize.c \
+            ft_lstlast.c \
+            ft_lstadd_back.c \
+            ft_lstdelone.c \
+            ft_lstclear.c \
+            ft_lstiter.c \
+            ft_lstmap.c \
+            ft_is_prime.c \
+            ft_putnbr_base.c \
+            ft_islowcase.c \
+            ft_putstr.c \
+            ft_isspace.c \
+            ft_range.c \
+            ft_isupcase.c \
+            ft_rev_int_tab.c \
+            ft_joinstrs.c \
+            ft_sort_int_tab.c \
+            ft_lstadd_strs.c \
+            ft_split_charset.c \
+            ft_lstat.c \
+            ft_sqrt.c \
+            ft_lstfind.c \
+            ft_strcapitalize.c \
+            ft_abs.c \
+            ft_lstmerge.c \
+            ft_strcat.c \
+            ft_atoi_base.c \
+            ft_lstrev.c \
+            ft_strcpy.c \
+            ft_lstrm_if.c \
+            ft_strncat.c \
+            ft_check_base.c \
+            ft_lstsort.c \
+            ft_strncpy.c \
+            ft_convert_base.c \
+            ft_power.c \
+            ft_strrev.c \
+            ft_factorial.c \
+            ft_print_int_tab.c \
+            ft_strstr.c \
+            ft_fibonacci.c \
+            ft_putchar.c \
+            ft_swap_int.c \
+            ft_find_next_prime.c \
+            ft_putnbr.c \
+            ft_swap_ptr.c
+OBJS=		${SRC_FILES:.c=.o}
 HEAD=		libft.h
 CC=			gcc
 CFLAGS=		-Wall -Werror -Wextra
@@ -103,20 +88,12 @@ NAME=		libft.a
 
 .c.o:		
 	${CC} ${CFLAGS} -include ${HEAD} -c $< -o ${<:.c=.o}
-${NAME}:	${OBJS}
+$(NAME):	${OBJS}
 	ar -rcs ${NAME} ${OBJS}
 all: ${NAME}
-
-bonus: ${OBJS_BONUS}
-	ar -rcs ${NAME} ${OBJS_BONUS}
 clean:
 	rm -rf ${OBJS}
 fclean: clean
 	rm -rf ${NAME}
-clean_bonus:
-	rm -rf ${OBJS_BONUS}
-fclean_bonus: clean_bonus
-	rm -rf ${NAME}
 re: fclean all
-re_bonus: fclean_bonus bonus
-.PHONY: all clean fclean re bonus clean_bonus fclean_bonus re_bonus
+.PHONY: all clean fclean re

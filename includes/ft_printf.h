@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/29 19:33:17 by louise            #+#    #+#             */
-/*   Updated: 2020/10/12 18:03:39 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 11:06:41 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_format
 	int				precision;
 
 	int				minus_flag;
+	int				zero_is_present;
 	int				zero_flag;
 	int				point_flag;
 	int				padding_flag;
@@ -47,7 +48,8 @@ typedef struct	s_format
 	int				hh_length;
 }				t_format;
 
-int				ft_printf(const char *fmt, ...);
+int				ft_printf(const char *fmt, ...)
+ __attribute__((format(printf,1,2)));
 int				is_charset(char c);
 char			*create_str(char c, int len);
 

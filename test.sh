@@ -1,1 +1,1 @@
-gcc -Wall -Werror -Wextra libftprintf.a main.c && ./a.out
+gcc -Wall -Wextra -Werror -L./ -lftprintf main.c && ./a.out

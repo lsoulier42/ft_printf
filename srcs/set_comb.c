@@ -6,7 +6,7 @@
 /*   By: louise <lsoulier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 02:06:15 by louise            #+#    #+#             */
-/*   Updated: 2020/10/11 17:43:50 by louise           ###   ########.fr       */
+/*   Updated: 2020/11/17 11:15:58 by louise           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void		set_flags(t_format *comb, char *parse_str)
 	while (*parse_str == ' ' || *parse_str == '+' || *parse_str == '-'
 		|| *parse_str == '#')
 		parse_str++;
+	if (*parse_str == '0')
+		comb->zero_is_present = 1;
 	if (!comb->point_flag && !comb->minus_flag && *parse_str == '0')
 		comb->zero_flag = 1;
 }
@@ -78,7 +80,15 @@ void		set_precision(t_format *comb, char *parse_str, va_list ap)
 		if (ft_isdigit(*parse_str))
 			comb->precision = ft_atoi(parse_str);
 		else if (*parse_str == '*')
+		{
 			comb->precision = (int)va_arg(ap, int);
+			if (comb->precision < 0)
+			{
+				comb->point_flag = 0;
+				comb->precision = 0;
+				comb->zero_flag = comb->zero_is_present && !comb->minus_flag;
+			}
+		}
 	}
 }
 
